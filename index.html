@@ -1,1 +1,20 @@
-yay, github
+---
+layout: post
+title: Razvan Caliman
+---
+
+<div id="home">
+    <p>
+        I'm Razvan and I build things that don't yet exist.
+    </p>                                                  
+    <p>
+        I work with a bunch of awesome people at Adobe on the Web Platform team. We're teaching the Web new tricks. Keep a tab on us over at <a href="http://html.adobe.com/">html.adobe.com</a>
+    </p>
+  <h1>Blog Posts</h1>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+  
+</div>
