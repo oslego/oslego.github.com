@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Development Version</title>
+    <link href='http://fonts.googleapis.com/css?family=Fredericka+the+Great' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
+</head>
+<body>
+    <div class="site">
+      <div class="title">
+        <a href="/">Razvan Caliman</a>
+        <a class="extra" href="/">home</a>
+      </div>          
+
+      <div id="post">
+    <h1>Crowdsource Testing with QUnit and Browserscope</h1>
+    
+    <p class="meta">28 May 2012 - Bucharest</p>
+
+
+    <p>This post will teach you how to streamline your cross-browser JavaScript-driven testing by using the <a href="http://docs.jquery.com/Qunit">QUnit</a> testing framework with <a href="http://www.browserscope.org/">Browserscope.org</a>.</p>
+
+    <p>I'll assume you have previous working experience with JavaScript-driven testing and <a href="http://docs.jquery.com/Qunit">QUnit</a> in particular.</p>
+
+    <h2>Crash Course in Browserscope</h2>
+
+    <p><a href="http://www.browserscope.org/">Browserscope.org</a> is an open-source distributed testing platform. Its main purpose is to profile web browsers and test for modern features.</p>
+
+    <p>Browserscope works by running test suites in users' browsers. It then aggregates the results with a simple JavaScript beacon. Some magic User Agent sniffing happens server-side and the results are groupped by the matching browser.</p>
+
+    <p>The results are aggregated and presented in a table view that's easy to filter by browser class, version or family. Here's a sample of <a href="http://www.browserscope.org/user/tests/table/agt1YS1wcm9maWxlcnINCxIEVGVzdBib2KQGDA">test results</a> for running Modernizr. These results are very valuable because they reflect the state of the web in working environments of real users.</p>
+
+    <p>The even more valuable thing is that Bowserscope has an API that you can bend to your own desire by running your own test suite and aggregate data.</p>
+
+    <h2>Working with the Browserscope API</h2>
+
+    <p><a href="http://www.browserscope.org/">Browserscope.org</a> hosts the code which is stacked onto Google's App Engine platform. Alternatively you can <a href="http://code.google.com/p/browserscope/source/checkout">download the source</a> and run it on our own infrastructure.</p>
+
+    <p>You'll need to sign in with a Google ID in order to use the hosted version of Browserscope.</p>
+
+    <p>Once inside you'll be able to create tests. "Test" is rather an overstatement. What you get is actually the important <code>_bTestKey</code> value, which is a unique identifier to be used with your test suite, and a bunch of useful links.</p>
+
+    <p>The <a href="http://www.browserscope.org/api">Browserscope API documentation</a> does a good job of describing the workflow for you as a developer.</p>
+
+    <p>Here's the gist of it:</p>
+
+    <p>You get the responsibility of creating and hosting a test page. This page must contain a test suite using a framework of your choice. After running the tests your code must populate a global variable called <code>_bTestResults</code>. This variable reference an object which holds key/value pairs representing the names and results of the tests. Bear in mind that the values may numeric entries only.</p>
+
+    <pre>// Populate the beacon with test results
+    var _bTestResults = {
+        "test one": 0,
+        "test two": 1
+    }
+    </pre>
+
+
+    <p>Once you're done you have to load a script from the Browserscope.org host passing in the value of your "_bTestKey" test key. The script will collect the test results and send them over to the Browserscope instance. Magic happens there.</p>
+
+    <pre>// Beacon the results to Browserscope.
+    (function(document) {
+        var testKey = 'CHANGE-THIS-TO-YOUR-TEST-KEY',
+            newScript = document.createElement('script'),
+            firstScript = document.getElementsByTagName('script')[0]
+
+        newScript.src = 'http://www.browserscope.org/user/beacon/' + testKey
+        firstScript.parentNode.insertBefore(newScript, firstScript)
+    }(document))
+    </pre>
+
+
+    <p>There are other parameters you can pass along to the beacon script, including one for pointing to something other than that pesky global variable. Check out the <a href="http://www.browserscope.org/api">documentation</a>.</p>
+
+    <h2>The QUnit API meets Browserscope</h2>
+
+    <p>QUnit provides a simple to use <a href="http://docs.jquery.com/Qunit#Integration_into_Browser_Automation_Tools">API</a> that's useful for making it talk to third party tools.</p>
+
+    <p>Joining QUnit with Browserscope for effectively aggregating test results is trivial. Just define some functionality on top of readily available QUnit callbacks <strong>before</strong> running the test suite.</p>
+
+    <p>You can build up the <code>_bTestResults</code> that Browserscope requires by using the <code>QUnit.testDone</code> callback. The framework passes in a single argument - an object with data about the test that just completed.</p>
+
+    <pre>/*
+    test = {
+        // name of the test that completed
+        name: "test one",
+
+        // number of failed assertions
+        failed: 0,
+
+        // number of successful assertions
+        passed: 1,
+
+        // number of expected assertions
+        total: 1
+    }
+    */
+
+    QUnit.testDone = function(test){
+
+        // make sure all assertions passed successfully
+        if (!test.failed &amp;&amp; test.total === test.passed){
+            _bTestResults[test.name] = 1
+        }
+        else{
+            _bTestResults[test.name] = 0
+        }
+    }
+    </pre>
+
+
+    <p>When the test suite is done running you're ready to pass the results to Browserscope. The <code>QUnit.done</code> callback is useful for this.</p>
+
+    <pre>QUnit.done = function(){
+        var testKey = 'CHANGE-THIS-TO-YOUR-TEST-KEY',
+            newScript = document.createElement('script'),
+            firstScript = document.getElementsByTagName('script')[0]
+
+        newScript.src = 'http://www.browserscope.org/user/beacon/' + testKey
+        firstScript.parentNode.insertBefore(newScript, firstScript)
+    }
+    </pre>
+
+
+    <p>It would be apropriate to ask for the user's permission before sending out this data.</p>
+
+    <p>Now, just send out the link to the test page to friends, fellow developers and the world. In time, you'll start building a database of results on the browsers used by your helpful testers.</p>
+
+    <p>Crowdsource testing done easy.</p>
+
+    <h2>Getting results out of Browserscope</h2>
+
+    <p>In your settings page on Browserscope.org you can see a near-realtime results table of people actively running your tests.</p>
+
+    <p>Browserscope offers a simple yet effective table widget for viewing aggregated results. Use this by embedding a script referencing the test key used when sending in results.</p>
+
+    <pre>&lt;script src="http://www.browserscope.org/user/tests/table/CHANGE-THIS-TO-YOUR-TEST-KEY?o=js"&gt;&lt;/script&gt;
+    </pre>
+
+
+    <p>This URL is the endpoint for getting results out of Browserscope. There are other parameters that can yield JSON output with JSONP support or plain HTML markup. Filtering and highlighting are also available. Check out the <a href="http://www.browserscope.org/api#urlparams">documentation</a>.</p>
+
+    <p>This simple but effective API means that you're free to develop your own visualization of the results. It's what you do with this data that's important.</p>
+
+    <h2>Getting started</h2>
+
+    <p>If this piqued your interest in trying out crowdsource testing with QUnit and Browserscope feel free to start from this <a href="https://gist.github.com/2819653">example source code</a> I wrote for you.</p>
+
+    <p>Have fun!</p>
+
+    </div>
+    </div>
+</body>
+</html>

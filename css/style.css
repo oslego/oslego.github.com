@@ -1,0 +1,55 @@
+body {
+  background: whitesmoke; }
+
+h1 {
+  font-family: 'Fredericka the Great', cursive;
+  font-weight: normal;
+  font-size: 3.5em;
+  color: #333;
+  line-height: 1em; }
+
+.site {
+  width: 45em;
+  margin: 0 auto; }
+
+#post {
+  padding: 2em 6em;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px 1px #ebebeb;
+  border: 1px solid white;
+  text-align: justify;
+  hyphens: auto; }
+  #post h1, #post h2, #post h3 {
+    text-align: left; }
+  #post h2 {
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 2em 0 0.7em;
+    font-size: 1.5em;
+    letter-spacing: -1px;
+    color: #444; }
+  #post .meta {
+    color: gray;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-size: 70%;
+    border-bottom: 1px solid #eee;
+    padding: 0 0 0.5em; }
+    #post .meta + p {
+      margin-top: 3em; }
+  #post p {
+    line-height: 1.45em;
+    margin: 0.3em 0 1.7em;
+    color: #111;
+    font-family: Palatino; }
+  #post a {
+    color: #C32C77; }
+    #post a:hover {
+      color: #7C0D4B; }
+
+pre {
+  padding: 1.5em 1em;
+  background: #fafafa;
+  border: 1px solid #eee;
+  line-height: 1.5em;
+  font-size: 90%; }
