@@ -6,7 +6,12 @@
    <!-- <link href="http://feeds.feedburner.com/tom-preston-werner" rel="alternate" title="Tom Preston-Werner" type="application/atom+xml" /> -->
 
    <!-- Homepage CSS -->
-   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+   <!-- <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" /> -->
+   <link href='http://fonts.googleapis.com/css?family=Fredericka+the+Great' rel='stylesheet' type='text/css'>
+   <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+   
+   <link rel="stylesheet" type="text/css" href="/css/style.css" media="all" />
+   
    <script type="text/javascript">
 
      var _gaq = _gaq || [];
@@ -22,14 +27,17 @@
    </script>
 </head>
 <body>
-
-<div class="site">
-  <div class="title">
-    <a href="/">Razvan Caliman</a>
-    <a class="extra" href="/">home</a>
-  </div>          
   
-  <div id="post">
+
+  <header>
+    <a href="/" class="logo">Razvan Caliman</a>
+    <nav>
+        <a href="/about.html">about me</a>
+    </nav>
+  </header>
+  
+  <div class="content">
+     <div id="post">
 <h1>Crowdsource Testing with QUnit and Browserscope</h1>
 
 <p class="meta">28 May 2012 - Bucharest</p>
@@ -168,8 +176,8 @@ QUnit.done = function(){
 
 <p>Have fun!</p>
 
-</div>
-</div>
-
+</div>   
+  </div>          
+  
 </body>
 </html>
