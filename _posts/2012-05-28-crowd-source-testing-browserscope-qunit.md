@@ -36,7 +36,7 @@ The [Browserscope API documentation](http://www.browserscope.org/api) does a goo
 
 Here's the gist of it:
 
-You get the responsibility of creating and hosting a test page. This page must contain a test suite using a framework of your choice. After running the tests your code must populate a global variable called <code>_bTestResults</code>. This variable reference an object which holds key/value pairs representing the names and results of the tests. Bear in mind that the values may numeric entries only.
+You get the responsibility of creating and hosting a test page. This page must contain a test suite using a framework of your choice. After running the tests your code must populate a global variable called <code>_bTestResults</code>. This variable reference an object which holds key/value pairs representing the names and results of the tests. Bear in mind that the values may only be numeric entries.
 
 <pre>
 // Populate the beacon with test results

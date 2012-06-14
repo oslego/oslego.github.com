@@ -4,7 +4,7 @@
  <title>Razvan Caliman</title>
  <link href="http://razvancaliman.com/atom.xml" rel="self"/>
  <link href="http://razvancaliman.com/"/>
- <updated>2012-06-12T18:05:12+03:00</updated>
+ <updated>2012-06-14T09:31:42+03:00</updated>
  <id>http://razvancaliman.com/</id>
  <author>
    <name>Razvan Caliman</name>
@@ -48,7 +48,7 @@
 
 &lt;p&gt;Here's the gist of it:&lt;/p&gt;
 
-&lt;p&gt;You get the responsibility of creating and hosting a test page. This page must contain a test suite using a framework of your choice. After running the tests your code must populate a global variable called &lt;code&gt;_bTestResults&lt;/code&gt;. This variable reference an object which holds key/value pairs representing the names and results of the tests. Bear in mind that the values may numeric entries only.&lt;/p&gt;
+&lt;p&gt;You get the responsibility of creating and hosting a test page. This page must contain a test suite using a framework of your choice. After running the tests your code must populate a global variable called &lt;code&gt;_bTestResults&lt;/code&gt;. This variable reference an object which holds key/value pairs representing the names and results of the tests. Bear in mind that the values may only be numeric entries.&lt;/p&gt;
 
 &lt;pre&gt;
 // Populate the beacon with test results
