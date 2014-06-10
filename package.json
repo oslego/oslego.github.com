@@ -1,0 +1,20 @@
+{
+  "name": "blog",
+  "description": "Blog at razvancaliman.com",
+  "version": "1.0.0",
+  "author": "Razvan Caliman",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "load-grunt-tasks": "~0.2.1",
+    "grunt-contrib-watch": "~0.5.2",
+    "grunt-contrib-sass": "^0.7.3",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-shell": "^0.7.0",
+    "grunt-markdown": "^0.6.1"
+  },
+  "engines": {
+    "node": ">=0.10.26"
+  }
+}

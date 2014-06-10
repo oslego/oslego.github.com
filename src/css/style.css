@@ -1,0 +1,104 @@
+body {
+  background: whitesmoke;
+  font-family: Palatino, Georgia, Times, serif;
+  width: 45em;
+  margin: 0 auto 5em; }
+
+h1 {
+  font-family: 'Fredericka the Great', cursive;
+  font-weight: normal;
+  font-size: 3.5em;
+  color: #333;
+  line-height: 1em; }
+
+a {
+  color: #c32c77; }
+  a:hover {
+    color: #7c0d4b;
+    text-decoration: none; }
+
+.greeting {
+  background: #7c0d4b;
+  padding: 1.5em 6em 1em;
+  border-radius: 5px 5px 0 0;
+  color: white; }
+  .greeting h1 {
+    color: white;
+    margin: 0.5em 0 -0.1em;
+    font-size: 3em; }
+  .greeting.slim {
+    padding: 1.5em 6em 0.2em;
+    background: #333; }
+    .greeting.slim h1 {
+      margin: 0em 0 -0.2em;
+      font-size: 2.5em; }
+
+.greeting + #post {
+  box-shadow: 0px 2px 4px 1px #ebebeb;
+  border-radius: 0 0 5px 5px; }
+
+#post {
+  padding: 2em 6em;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px 1px #ebebeb;
+  text-align: left;
+  hyphens: auto; }
+  #post h1, #post h2, #post h3 {
+    text-align: left; }
+  #post h2, #post h3 {
+    font-family: 'Dosis', Arial, sans-serif; }
+  #post h2 {
+    margin: 2em 0 0.7em;
+    font-size: 1.5em;
+    letter-spacing: -1px;
+    color: #000; }
+  #post .meta {
+    color: gray;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-size: 70%;
+    border-bottom: 1px solid #eee;
+    padding: 0 0 0.5em; }
+    #post .meta + p {
+      margin-top: 3em; }
+  #post p {
+    line-height: 1.45em;
+    margin: 0.3em 0 1.7em;
+    color: #111; }
+  #post li {
+    line-height: 1.45em; }
+
+#home h1 {
+  font-size: 1.5em;
+  margin: 2em 0 1em;
+  font-family: 'Dosis', sans-serif; }
+
+.posts {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .posts li {
+    margin: 0;
+    padding: 0.5em 0 1em; }
+
+header {
+  margin: 2em 0 1.5em; }
+  header .logo {
+    font-family: 'Dosis', sans-serif;
+    font-size: 120%;
+    text-decoration: none;
+    color: #999; }
+    header .logo:hover {
+      color: black; }
+  header nav {
+    display: inline-block; }
+    header nav a {
+      margin-left: 1em; }
+
+pre {
+  padding: 1.5em 1em;
+  background: #fafafa;
+  border: 1px solid #eee;
+  line-height: 1.5em;
+  font-size: 90%; }
