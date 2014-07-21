@@ -1,6 +1,8 @@
 # Crowdsource Testing with QUnit and Browserscope
 
-<p class="meta">28 May 2012 - Bucharest</p>
+<p class="meta">
+<time datetime="2012-05-28 00:00">28 May 2012</time> - Bucharest
+</p>
 
 This post will teach you how to streamline your cross-browser JavaScript-driven testing by using the [QUnit](http://docs.jquery.com/Qunit) testing framework with [Browserscope.org](http://www.browserscope.org/).
 
