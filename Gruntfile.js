@@ -105,16 +105,18 @@ module.exports = function (grunt) {
 
       grunt.file.expand([posts, pages]).forEach(function(file){
         var target = path.join(path.dirname(file), 'index.html'),
-            md = grunt.file.read(file),
-            html = marked(md),
-            isPost = grunt.file.isMatch(posts, file);
+            isPost = grunt.file.isMatch(posts, file),
+            html = marked(grunt.file.read(file)),
+            // TODO extract title from filename as alternative
+            matches = html.match(/<h1(?:.+)>(.+)<\/h1>/i),
+            title = (matches && matches[1]) || "Razvan Caliman";
 
         // posts get nested within an extra template
         if (isPost){
             html = postTpl({content: html});
         }
 
-        html = masterTpl({content: html});
+        html = masterTpl({content: html, title: title});
 
         grunt.file.write(target, html);
       });
