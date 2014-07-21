@@ -57,8 +57,13 @@ module.exports = function (grunt) {
 
       copy: {
         main: {
-          // copy everything from src/ to dist/, but skip paths which start with an underscore
-          files: [{expand: true,  cwd: '<%= project.src %>', src: ['**', '!_*/**'], dest: '<%= project.dist %>'}]
+          // copy everything from src/ to dist/, but skip paths which start with an underscore, and markdown files
+          files: [{
+            expand: true,
+            cwd: '<%= project.src %>',
+            src: ['**', '!_*/**', '!**/*.md'],
+            dest: '<%= project.dist %>'
+          }]
         }
       },
 
