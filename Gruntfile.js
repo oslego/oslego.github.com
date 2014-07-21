@@ -93,7 +93,7 @@ module.exports = function (grunt) {
 
     });
 
-    grunt.registerTask('build', ['sass', 'clean', 'convert', 'copy', 'clean:src']);
+    grunt.registerTask('build', ['sass', 'clean:dist', 'convert', 'copy', 'clean:src']);
 
     grunt.registerTask('dev', ['watch']);
 
