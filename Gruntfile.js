@@ -45,6 +45,7 @@ module.exports = function (grunt) {
       project: {
         src: 'src',
         dist: 'dist',
+        index: 'dist/index.html',
         posts: 'src/writing/*/*.md',
         pages: ['src/about/*.md']
       },
@@ -120,7 +121,7 @@ module.exports = function (grunt) {
 
     });
 
-    grunt.registerTask('build', ['sass', 'clean:dist', 'convert', 'copy', 'clean:src']);
+    grunt.registerTask('build', ['sass', 'clean:dist', 'convert', 'copy', 'buildindex', 'clean:src']);
 
     grunt.registerTask('dev', ['watch']);
 
@@ -157,6 +158,23 @@ module.exports = function (grunt) {
 
       // store for later
       grunt.config('archive', metadata);
+    });
+
+    grunt.registerTask('buildindex', function(){
+      var posts = grunt.config('archive'),
+          target = grunt.config('project.index'),
+          masterTpl = grunt.config('template.master'),
+          archiveTpl, html;
+
+      if (!grunt.file.isFile(target)){
+        grunt.log.errorlns('Index file missing: ' + target);
+        return false;
+      }
+
+      archiveTpl = handlebars.compile(grunt.file.read(target));
+      html = archiveTpl({posts: posts});
+      html = masterTpl({content: html, title: getH1(html) || "Homepage"});
+      grunt.file.write(target, html);
     });
 
     // alternatively, you can manually run:
