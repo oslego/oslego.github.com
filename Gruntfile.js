@@ -20,7 +20,9 @@ module.exports = function (grunt) {
       // configurable paths
       project: {
         src: 'src',
-        dist: 'dist'
+        dist: 'dist',
+        posts: 'src/writing/*/*.md',
+        pages: ['src/about/*.md']
       },
 
       template: {
@@ -55,15 +57,16 @@ module.exports = function (grunt) {
 
       copy: {
         main: {
+          // copy everything from src/ to dist/, but skip paths which start with an underscore
           files: [{expand: true,  cwd: '<%= project.src %>', src: ['**', '!_*/**'], dest: '<%= project.dist %>'}]
         }
       },
 
       clean: {
-        // Delete all files under dist/, but skips dist/README.md
+        // delete all files under dist/, but skips dist/README.md
         dist: ["<%= project.dist %>/*", "!<%= project.dist %>/README.md"],
-        // Delete temporary html files in src/
-        src: ["<%= project.src %>/writing/**/*.html"]
+        // delete generated index.html files from src/, but skip the root index.html
+        src: ["<%= project.src %>/**/index.html", "!<%= project.src %>/index.html"]
       },
 
       shell: {
@@ -90,21 +93,26 @@ module.exports = function (grunt) {
     grunt.registerTask('dev', ['watch']);
 
     grunt.registerTask('convert', function(){
-      var files = grunt.file.expand('src/writing/*/*.md'),
+      var posts = grunt.config('project.posts'),
+          pages = grunt.config('project.pages'),
           postTpl = grunt.config('template.post'),
           masterTpl = grunt.config('template.master');
 
-      files.forEach(function(file){
+      grunt.file.expand([posts, pages]).forEach(function(file){
         var target = path.join(path.dirname(file), 'index.html'),
             md = grunt.file.read(file),
-            html = marked(md);
+            html = marked(md),
+            isPost = grunt.file.isMatch(posts, file);
 
-        html = postTpl({content: html});
+        // posts get nested within an extra template
+        if (isPost){
+            html = postTpl({content: html});
+        }
+
         html = masterTpl({content: html});
 
         grunt.file.write(target, html);
       });
-
     });
 
     // alternatively, you can manually run:
