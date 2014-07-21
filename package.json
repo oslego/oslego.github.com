@@ -1,7 +1,7 @@
 {
   "name": "razvancaliman.com",
-  "description": "Blog at razvancaliman.com",
-  "version": "0.0.0",
+  "description": "Personal blog at razvancaliman.com",
+  "version": "1.0.0",
   "author": "Razvan Caliman",
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -11,8 +11,6 @@
     "grunt-contrib-copy": "^0.5.0",
     "grunt-contrib-clean": "^0.5.0",
     "grunt-shell": "^0.7.0",
-    "grunt-markdown": "^0.6.1",
-    "cheerio": "^0.17.0",
     "marked": "^0.3.2",
     "handlebars": "^2.0.0-alpha.4",
     "grunt-contrib-connect": "^0.8.0"

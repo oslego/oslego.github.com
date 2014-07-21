@@ -1,4 +1,22 @@
-<div class="greeting">
+<!DOCTYPE html>
+<head>
+  <title>Homepage</title>
+  <meta charset="UTF-8">
+  <meta name="author" content="Razvan Caliman" />
+  <base href="/">
+  <link href='http://fonts.googleapis.com/css?family=Fredericka+the+Great|Dosis:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
+</head>
+<body>
+  <header>
+    <a href="/" class="logo">Razvan Caliman</a>
+    <nav>
+      <a href="/about">about me</a>
+    </nav>
+  </header>
+
+  <div class="content">
+    <div class="greeting">
     <h1>Hi, I'm Razvan</h1>
     <p>
         I build things that don't yet exist.
@@ -17,8 +35,12 @@
 
   <h2>Blog Posts</h2>
   <ul class="posts">
-  {% for post in site.posts %}
-  <li><span class="meta">{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
+  
+  <li><span class="meta">28 May 2012</span> &raquo; <a href="writing/2012-05-28-crowd-source-testing-browserscope-qunit/index.html">Crowdsource Testing with QUnit and Browserscope</a></li>
+  
   </ul>
 </div>
+
+  </div>
+</body>
+</html>

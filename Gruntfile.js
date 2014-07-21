@@ -59,6 +59,7 @@ module.exports = function (grunt) {
       archive: {},
 
       banner: grunt.file.read('./COPYRIGHT')
+                  .replace(/@AUTHOR/, '<%= pkg.author %>')
                   .replace(/@NAME/, '<%= pkg.name %>')
                   .replace(/@DESCRIPTION/, '<%= pkg.description %>')
                   .replace(/@VERSION/, '<%= pkg.version %>')
