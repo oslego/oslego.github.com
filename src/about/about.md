@@ -4,11 +4,13 @@ What makes me be me
 </div>
 <div id="post">
 
-I'm not keen on job titles, but, for easy reference, you can put me in the web developer bucket. As a free-range web developer at [Adobe](http://www.adobe.com), I get a lot of flexibility to work on various cutting-edge tools and web technologies. I thrive in environments where I have the autonomy to pick the right solutions, explore and learn.
+I'm not keen on job titles, but, for easy reference, you can put me in the web developer bucket.
 
-## What I do
+As a free-range web developer at [Adobe](http://www.adobe.com), I get a lot of flexibility to work on various cutting-edge tools and web technologies. I thrive in environments where I have the autonomy to pick the right solutions, explore and learn.
 
-I enjoy working with JavaScript, HTML and CSS to build effective solutions to real problems. While I prefer client-side web development, I do not shy away from meddling on the server-side.Â
+What I do
+
+I enjoy working with JavaScript, HTML and CSS to build effective solutions to real problems. While I prefer client-side web development, I do not shy away from meddling on the server-side.
 
 Follow me on Twitter [@razvancaliman](https://twitter.com/razvancaliman) if you want to know what grabs my attention from time to time.
 
