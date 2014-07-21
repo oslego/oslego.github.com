@@ -5,7 +5,6 @@ var marked = require('marked'),
     path = require('path'),
     handlebars = require('handlebars');
 
-
 module.exports = function (grunt) {
 
     'use strict';
@@ -29,6 +28,9 @@ module.exports = function (grunt) {
         master: handlebars.compile(grunt.file.read('src/_templates/master.html')),
         post: handlebars.compile(grunt.file.read('src/_templates/post.html'))
       },
+
+      // metatdata for posts archive; populated by 'convert' task
+      archive: {},
 
       banner: grunt.file.read('./COPYRIGHT')
                   .replace(/@NAME/, '<%= pkg.name %>')
@@ -101,25 +103,37 @@ module.exports = function (grunt) {
       var posts = grunt.config('project.posts'),
           pages = grunt.config('project.pages'),
           postTpl = grunt.config('template.post'),
-          masterTpl = grunt.config('template.master');
+          masterTpl = grunt.config('template.master'),
+          metadata = []; // metadata for posts archive
 
       grunt.file.expand([posts, pages]).forEach(function(file){
         var target = path.join(path.dirname(file), 'index.html'),
             isPost = grunt.file.isMatch(posts, file),
             html = marked(grunt.file.read(file)),
+            tMatches = html.match(/<h1(?:.+)>(.+)<\/h1>/i),
+            dMatches = html.match(/<time(?:.+)>(.+)<\/time>/i),
             // TODO extract title from filename as alternative
-            matches = html.match(/<h1(?:.+)>(.+)<\/h1>/i),
-            title = (matches && matches[1]) || "Razvan Caliman";
+            title = (tMatches && tMatches[1]) || "Razvan Caliman",
+            date = (dMatches && dMatches[1]) || grunt.template.today('d mmmm yyyy');
 
-        // posts get nested within an extra template
         if (isPost){
+            // posts get nested within an extra template
             html = postTpl({content: html});
+
+            // collect metadata for archive
+            metadata.push({
+              title: title,
+              date: date,
+              url: target.substr('src/'.length)
+            });
         }
 
         html = masterTpl({content: html, title: title});
-
         grunt.file.write(target, html);
       });
+
+      // store for later
+      grunt.config('archive', metadata);
     });
 
     // alternatively, you can manually run:
