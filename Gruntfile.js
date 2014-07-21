@@ -5,6 +5,31 @@ var marked = require('marked'),
     path = require('path'),
     handlebars = require('handlebars');
 
+
+/*
+  Attempts to find and return the innerHTML of the first <h1> element fround in the input string.
+  Returns undefined if not match found.
+
+  @param {string} str
+  @return {string|undefined}
+*/
+function getH1(str){
+  var matches = str.match(/<h1(?:.+)>(.+)<\/h1>/i);
+  return matches && matches[1];
+}
+
+/*
+  Attempts to find and return the innerHTML of the first <time> element fround in the input string.
+  Returns undefined if not match found.
+
+  @param {string} str
+  @return {string|undefined}
+*/
+function getTime(str){
+  var matches = str.match(/<time(?:.+)>(.+)<\/time>/i);
+  return matches && matches[1];
+}
+
 module.exports = function (grunt) {
 
     'use strict';
@@ -110,11 +135,9 @@ module.exports = function (grunt) {
         var target = path.join(path.dirname(file), 'index.html'),
             isPost = grunt.file.isMatch(posts, file),
             html = marked(grunt.file.read(file)),
-            tMatches = html.match(/<h1(?:.+)>(.+)<\/h1>/i),
-            dMatches = html.match(/<time(?:.+)>(.+)<\/time>/i),
             // TODO extract title from filename as alternative
-            title = (tMatches && tMatches[1]) || "Razvan Caliman",
-            date = (dMatches && dMatches[1]) || grunt.template.today('d mmmm yyyy');
+            title = getH1(html) || "Razvan Caliman",
+            date  = getTime(html) || grunt.template.today('d mmmm yyyy');
 
         if (isPost){
             // posts get nested within an extra template
