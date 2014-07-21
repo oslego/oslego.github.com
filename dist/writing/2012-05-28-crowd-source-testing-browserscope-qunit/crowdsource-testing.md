@@ -1,10 +1,4 @@
----
-layout: post
-title: Crowdsource Testing with QUnit and Browserscope
----
-
-{{ page.title }}
-================
+# Crowdsource Testing with QUnit and Browserscope
 
 <p class="meta">28 May 2012 - Bucharest</p>
 
@@ -12,8 +6,7 @@ This post will teach you how to streamline your cross-browser JavaScript-driven 
 
 I'll assume you have previous working experience with JavaScript-driven testing and [QUnit](http://docs.jquery.com/Qunit) in particular.
 
-Crash Course in Browserscope
------------------------------------------------------
+## Crash Course in Browserscope
 
 [Browserscope.org](http://www.browserscope.org/) is an open-source distributed testing platform. Its main purpose is to profile web browsers and test for modern features.
 
@@ -23,8 +16,7 @@ The results are aggregated and presented in a table view that's easy to filter b
 
 The even more valuable thing is that Bowserscope has an API that you can bend to your own desire by running your own test suite and aggregate data.
 
-Working with the Browserscope API
------------------------------------------------------
+## Working with the Browserscope API
 
 [Browserscope.org](http://www.browserscope.org/) hosts the code which is stacked onto Google's App Engine platform. Alternatively you can [download the source](http://code.google.com/p/browserscope/source/checkout) and run it on our own infrastructure.
 
@@ -63,8 +55,7 @@ Once you're done you have to load a script from the Browserscope.org host passin
 There are other parameters you can pass along to the beacon script, including one for pointing to something other than that pesky global variable. Check out the [documentation](http://www.browserscope.org/api).
 
 
-The QUnit API meets Browserscope
------------------------------------------------------
+## The QUnit API meets Browserscope
 
 QUnit provides a simple to use [API](http://docs.jquery.com/Qunit#Integration_into_Browser_Automation_Tools) that's useful for making it talk to third party tools.
 
@@ -120,8 +111,7 @@ Now, just send out the link to the test page to friends, fellow developers and t
 
 Crowdsource testing done easy.
 
-Getting results out of Browserscope
------------------------------------------------------
+## Getting results out of Browserscope
 
 In your settings page on Browserscope.org you can see a near-realtime results table of people actively running your tests.
 
@@ -135,11 +125,8 @@ This URL is the endpoint for getting results out of Browserscope. There are othe
 
 This simple but effective API means that you're free to develop your own visualization of the results. It's what you do with this data that's important.
 
-Getting started
-------------------------------------------------------
+## Getting started
 
-If this piqued your interest in trying out crowdsource testing with QUnit and Browserscope feel free to start from this [example source code](https://gist.github.com/2819653) I wrote for you.
+If this sparked your interest in trying out crowdsource testing with QUnit and Browserscope feel free to start from this [example source code](https://gist.github.com/2819653) I wrote for you.
 
-Have fun! 
-
-
+Have fun!

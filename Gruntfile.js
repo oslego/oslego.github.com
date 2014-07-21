@@ -1,6 +1,11 @@
 /*jslint vars: true, plusplus: true, devel: true, nomen: true, regexp: true, indent: 2, maxerr: 50 */
 /*global module, require */
 
+var marked = require('marked'),
+    path = require('path'),
+    handlebars = require('handlebars');
+
+
 module.exports = function (grunt) {
 
     'use strict';
@@ -16,6 +21,11 @@ module.exports = function (grunt) {
       project: {
         src: 'src',
         dist: 'dist'
+      },
+
+      template: {
+        master: handlebars.compile(grunt.file.read('src/_templates/master.html')),
+        post: handlebars.compile(grunt.file.read('src/_templates/post.html'))
       },
 
       banner: grunt.file.read('./COPYRIGHT')
@@ -38,34 +48,64 @@ module.exports = function (grunt) {
             banner: '<%= banner %>'
           },
           files: {
-            '<%= project.src %>/css/screen.css': '<%= project.src %>/sass/screen.scss'
+            '<%= project.src %>/css/style.css': '<%= project.src %>/_sass/style.scss'
           }
         }
       },
 
       copy: {
         main: {
-          files: [{expand: true, cwd: '<%= project.src %>', src: ['**'], dest: '<%= project.dist %>'}]
+          files: [{expand: true,  cwd: '<%= project.src %>', src: ['**', '!_*/**'], dest: '<%= project.dist %>'}]
         }
       },
 
-      // Deletes all files under dist/, but skips dist/README.md
       clean: {
-        dist: ["<%= project.dist %>/*", "!<%= project.dist %>/README.md"]
+        // Delete all files under dist/, but skips dist/README.md
+        dist: ["<%= project.dist %>/*", "!<%= project.dist %>/README.md"],
+        // Delete temporary html files in src/
+        src: ["<%= project.src %>/writing/**/*.html"]
       },
 
       shell: {
         deploy: {
           command: 'git subtree push --prefix <%= project.dist %> origin gh-pages'
         }
+      },
+
+      connect: {
+        server: {
+          options: {
+            port: 9001,
+            base: 'dist',
+            open: true,
+            keepalive: true
+          }
+        }
       }
 
     });
 
-    // `copy` task MUST run before `requirejs` because the latter overwrites `dist/js/main.js`
-    grunt.registerTask('build', ['sass', 'clean', 'copy']);
+    grunt.registerTask('build', ['sass', 'clean', 'convert', 'copy', 'clean:src']);
 
     grunt.registerTask('dev', ['watch']);
+
+    grunt.registerTask('convert', function(){
+      var files = grunt.file.expand('src/writing/*/*.md'),
+          postTpl = grunt.config('template.post'),
+          masterTpl = grunt.config('template.master');
+
+      files.forEach(function(file){
+        var target = path.join(path.dirname(file), 'index.html'),
+            md = grunt.file.read(file),
+            html = marked(md);
+
+        html = postTpl({content: html});
+        html = masterTpl({content: html});
+
+        grunt.file.write(target, html);
+      });
+
+    });
 
     // alternatively, you can manually run:
     // git subtree push --prefix dist origin gh-pages
