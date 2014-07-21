@@ -1,0 +1,24 @@
+<div class="greeting">
+    <h1>Hi, I'm Razvan</h1>
+    <p>
+        I build things that don't yet exist.
+    </p>
+</div>
+
+<div id="post">
+  <p>
+  I'm a maker of things that live on the web to make lives easier for people living in the real world.
+  </p>
+  <p>
+  I work with a bunch of smart people at Adobe to teach CSS new tricks. Find out more <a href="/about" title="About Razvan Caliman">about me</a>.
+  </p>
+
+  <p>This is where I share some thoughts.</p>
+
+  <h2>Blog Posts</h2>
+  <ul class="posts">
+  {% for post in site.posts %}
+  <li><span class="meta">{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+  </ul>
+</div>
