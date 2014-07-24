@@ -67,8 +67,8 @@ module.exports = function (grunt) {
 
       watch: {
         sass: {
-          files: ['<%= project.src %>/sass{,*/}*.scss'],
-          tasks: ['sass']
+          files: ['<%= project.src %>/_sass{,*/}*.scss'],
+          tasks: ['sass', 'copy']
         }
       },
 
@@ -166,6 +166,17 @@ module.exports = function (grunt) {
           target = grunt.config('project.index'),
           masterTpl = grunt.config('template.master'),
           archiveTpl, html;
+
+      posts = posts.sort(function(a, b){
+        var dateA = new Date(a.date),
+            dateB = new Date(b.date);
+
+        if (dateA == dateB){
+          return 0
+        } else {
+          return (dateA < dateB) ? 1 : -1
+        }
+      });
 
       if (!grunt.file.isFile(target)){
         grunt.log.errorlns('Index file missing: ' + target);
