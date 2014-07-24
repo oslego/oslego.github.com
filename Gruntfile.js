@@ -149,7 +149,7 @@ module.exports = function (grunt) {
             metadata.push({
               title: title,
               date: date,
-              url: target.substr('src/'.length)
+              url: path.dirname(target.substr('src/'.length))
             });
         }
 
