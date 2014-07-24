@@ -13,7 +13,7 @@ razvancaliman.com 1.0.0
 
 Personal blog at razvancaliman.com
 
-build: 2014-07-21
+build: 2014-07-24
 */
 
 body {
@@ -84,17 +84,6 @@ a:hover {
   letter-spacing: -1px;
   color: #000;
 }
-#post .meta {
-  color: gray;
-  text-transform: uppercase;
-  font-family: sans-serif;
-  font-size: 70%;
-  border-bottom: 1px solid #eee;
-  padding: 0 0 0.5em;
-}
-#post .meta + p {
-  margin-top: 3em;
-}
 #post p {
   line-height: 1.45em;
   margin: 0.3em 0 1.7em;
@@ -102,6 +91,22 @@ a:hover {
 }
 #post li {
   line-height: 1.45em;
+}
+#post img {
+  width: 110%;
+  margin-left: -4%;
+}
+
+.meta {
+  color: gray;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  font-size: 70%;
+  border-bottom: 1px solid #eee;
+  padding: 0 0 0.5em;
+}
+.meta + p {
+  margin-top: 3em;
 }
 
 #home h1 {
@@ -117,7 +122,12 @@ a:hover {
 }
 .posts li {
   margin: 0;
-  padding: 0.5em 0 1em;
+  padding: 0.5em 0 0;
+}
+.posts .meta {
+  min-width: 6em;
+  display: inline-block;
+  border: none;
 }
 
 header {
@@ -145,4 +155,71 @@ pre {
   border: 1px solid #eee;
   line-height: 1.5em;
   font-size: 90%;
+}
+
+/* table styles from Pure CSS (https://github.com/yui/pure/blob/master/src/tables/css/tables.css)*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+  border: 1px solid #cbcbcb;
+}
+
+table caption {
+  color: #000;
+  font: italic 85%/1 arial, sans-serif;
+  padding: 1em 0;
+  text-align: center;
+}
+
+table td,
+table th {
+  border-left: 1px solid #cbcbcb;
+  /*  inner column border */
+  border-width: 0 0 0 1px;
+  font-size: inherit;
+  margin: 0;
+  overflow: visible;
+  /*to make ths where the title is really long work*/
+  padding: 0.5em 1em;
+  /* cell padding */
+}
+
+table td:first-child,
+table th:first-child {
+  border-left-width: 0;
+}
+
+table thead {
+  background: #e0e0e0;
+  color: #000;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+/*
+striping:
+   even - #fff (white)
+   odd  - #f2f2f2 (light gray)
+*/
+table td {
+  background-color: transparent;
+}
+
+.pure-table-odd td {
+  background-color: #f2f2f2;
+}
+
+/* nth-child selector for modern browsers */
+.pure-table-striped tr:nth-child(2n-1) td {
+  background-color: #f2f2f2;
+}
+
+/* BORDERED TABLES */
+table td {
+  border-bottom: 1px solid #cbcbcb;
+}
+
+table tbody > tr:last-child td {
+  border-bottom-width: 0;
 }
