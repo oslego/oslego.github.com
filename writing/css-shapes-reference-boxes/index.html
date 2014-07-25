@@ -25,12 +25,12 @@
 <p>A reference box defines the shape&#39;s coordinate system, so it influences how the shape will be drawn and positioned. There are four reference boxes to choose from: <code>margin-box</code>, <code>padding-box</code>, <code>border-box</code> and <code>content-box</code>. Each of them yields subtly different results. Read on to learn how they work.</p>
 <p><img src="refboxes_reference-box.png" alt="all reference boxes for CSS Shapes"></p>
 <p>We&#39;ll consider a simple circle shape around which we will wrap content. We&#39;ll use percentages for the circle radius to observe how reference boxes influence the resulting shape.</p>
-<pre><code class="lang-css">.shape{
-  shape-outside: circle(50%);
-  float: left;
-  width: 100px;
-  height: 100px;
-}
+<pre><code class="lang-css"><span class="hljs-class">.shape</span><span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">shape-outside</span>:<span class="hljs-value"> <span class="hljs-function">circle</span>(<span class="hljs-number">50%</span>)</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+<span class="hljs-rule">}</span></span>
 </code></pre>
 <h2 id="the-margin-box">The margin-box</h2>
 <p>If unspecified, the default reference box for a shape is <code>margin-box</code>. The CSS shape declaration above is equivalent to <code>shape-outside: circle(50%) margin-box;</code>.</p>
@@ -38,13 +38,13 @@
 <p>We didn&#39;t specify a margin in our sample yet, so the <code>margin-box</code> reference box does not extend beyond the element&#39;s content area. It&#39;s still ok to imagine the origin of the coordinate system for the shape placed at the upper-left corner of the element.</p>
 <p>At this point, the circle&#39;s 50% radius yields an actual length of 50px (half the element&#39;s width or height).</p>
 <p>The shape changes when we do specify a margin.</p>
-<pre><code class="lang-css">.shape{
-  margin: 50px;
-  shape-outside: circle(50%);
-  float: left;
-  width: 100px;
-  height: 100px;
-}
+<pre><code class="lang-css"><span class="hljs-class">.shape</span><span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">50px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">shape-outside</span>:<span class="hljs-value"> <span class="hljs-function">circle</span>(<span class="hljs-number">50%</span>)</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+<span class="hljs-rule">}</span></span>
 </code></pre>
 <p>After setting <code>margin: 50px</code>, the <code>margin-box</code> reference box extends around the element by 50px in all directions. It builds on the element&#39;s dimensions, so the reference box becomes 200px by 200px.</p>
 <p>The circle&#39;s 50% radius now yields an actual length of 100px and the origin is outside the element’s content area, at the upper left corner of the box defined by the margin.</p>
@@ -54,13 +54,13 @@
 <p>It&#39;s <strong>very important</strong> to understand that all reference boxes define coordinate systems for shapes, but only the <code>margin-box</code> reference box actually clips the shape. This means that shapes larger than other reference boxes will eventually be clipped by the <code>margin-box</code>. Therefore, an element&#39;s margin can be used to increase the surface where the shape will draw, if it extends beyond other reference boxes.</p>
 <h2 id="the-border-box">The border-box</h2>
 <p>As its name implies, the <code>border-box</code> reference box constrains the shape&#39;s coordinate system to the box defined by the outer edges of the element&#39;s border. In this case, the shape may overlap the element&#39;s border, and can extend beyond it if there is a margin around the element.</p>
-<pre><code class="lang-css">.shape{
-  border: 25px solid pink;
-  shape-outside: circle(50%) border-box;
-  float: left;
-  width: 100px;
-  height: 100px;
-}
+<pre><code class="lang-css"><span class="hljs-class">.shape</span><span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">25px</span> solid pink</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">shape-outside</span>:<span class="hljs-value"> <span class="hljs-function">circle</span>(<span class="hljs-number">50%</span>) border-box</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+<span class="hljs-rule">}</span></span>
 </code></pre>
 <p>After applying a thick 25px solid border, which, by default, grows the element in all directions, the reference box will be 150px by 150px, (width + 2 * 25px) by (height + 2 * 25px), and the circle&#39;s 50% radius yields 75px.</p>
 <p><img src="border-box_reference-box.png" alt="border-box reference box for circle() shape function"></p>
@@ -70,13 +70,13 @@
 <h2 id="the-padding-box">The padding-box</h2>
 <p>The <code>padding-box</code> reference box constrains the shape&#39;s coordinate system to the box defined by the outer edges of the element&#39;s padding.</p>
 <p>Let&#39;s use the <code>padding-box</code> reference box and specify a padding.</p>
-<pre><code class="lang-css">.shape{
-  padding: 25px;
-  shape-outside: circle(50%) padding-box;
-  float: left;
-  width: 100px;
-  height: 100px;
-}
+<pre><code class="lang-css"><span class="hljs-class">.shape</span><span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">25px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">shape-outside</span>:<span class="hljs-value"> <span class="hljs-function">circle</span>(<span class="hljs-number">50%</span>) padding-box</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+<span class="hljs-rule">}</span></span>
 </code></pre>
 <p>After setting <code>padding: 25px</code> the element grows by 25px in all directions. This effect occurs only if the element&#39;s <code>box-sizing</code> property value remains unchanged from the browser&#39;s default of <code>content-box</code>.</p>
 <p>In this scenario, the reference box becomes 150px by 150px, (width + 2 * 25px) by (height + 2 * 25px). The circle&#39;s 50% radius now means 75px, and the coordinate system origin is at the upper left corner of the box defined by the padding.</p>
@@ -88,23 +88,23 @@
 <p>The <code>content-box</code> reference box constrains the shape&#39;s coordinate system to the available space for content within the element.</p>
 <p>It is common for at least one of the element&#39;s dimension to not be explicitly defined, for example <code>width</code> may be set, but <code>height</code> may be derived from the amount of content. This causes the reference box and the resulting shape to be directly influenced by the element&#39;s content.</p>
 <p>Let&#39;s look at two examples with <code>content-box</code> reference box.</p>
-<pre><code class="lang-css">.shape{
-  shape-outside: circle(50%) content-box;
-  float: left;
-  width: 100px;
-  height: 100px;
-}
+<pre><code class="lang-css"><span class="hljs-class">.shape</span><span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">shape-outside</span>:<span class="hljs-value"> <span class="hljs-function">circle</span>(<span class="hljs-number">50%</span>) content-box</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+<span class="hljs-rule">}</span></span>
 </code></pre>
 <p>When both dimensions are explicitly set it is predictable what the reference box will be: the box defined by the width and height properties. Even though padding and border may grow the element&#39;s perceived size, the reference box remains tied to the initial dimensions.</p>
 <p><img src="content-box_reference-box.png" alt="content-box reference box for circle() shape function"></p>
 <p>Using <code>box-sizing: border-box</code> will, of course, subtract padding and border from those dimensions and the reference box will be identical to the surface that&#39;s left available. If the subtraction causes the remaining surface to be zero or negative, there will be no visible shape because there is nowhere to draw it.</p>
 <p>That was the predictable case. However, if one of the dimensions isn&#39;t defined, the reference box can vary wildly according to other constraints.</p>
-<pre><code class="lang-css">.shape{
-  shape-outside: circle(50%) content-box;
-  float: left;
-  width: 100px;
-  /* height: 100px; */
-}
+<pre><code class="lang-css"><span class="hljs-class">.shape</span><span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">shape-outside</span>:<span class="hljs-value"> <span class="hljs-function">circle</span>(<span class="hljs-number">50%</span>) content-box</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+  <span class="hljs-comment">/* height: 100px; */</span>
+<span class="hljs-rule">}</span></span>
 </code></pre>
 <p>Notice that we commented-out the explicit <code>height</code> property. Now, the <code>content-box</code> reference box depends on the amount of content within the element with the &quot;shape&quot; class. Different <code>font-size</code> values or relative size units will also have an impact on the reference box.</p>
 <h3 id="variable-dimension-reference-boxes">Variable dimension reference boxes</h3>
@@ -120,13 +120,13 @@
 <p><img src="progressive-shape-disclosure_margin-box.png" alt="progressive shape disclosure based on content-box reference box size, but influenced by margin-box"></p>
 <h2 id="creating-shapes-from-reference-boxes">Creating shapes from reference boxes</h2>
 <p>It is possible to skip the shape function definition and to infer the shape from the element&#39;s reference box. This is particularly useful when <code>border-radius</code> is used, because that property can influence the shape of the reference box.</p>
-<pre><code class="lang-css">.shape{
-  border-radius: 50px;
-  shape-outside: margin-box;
-  float: left;
-  width: 100px;
-  height: 100px;
-}
+<pre><code class="lang-css"><span class="hljs-class">.shape</span><span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">border-radius</span>:<span class="hljs-value"> <span class="hljs-number">50px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">shape-outside</span>:<span class="hljs-value"> margin-box</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+<span class="hljs-rule">}</span></span>
 </code></pre>
 <p>The <code>border-radius</code> on its own does clip the element, but it does not affect the float area around it &mdash; that remains rectangular. Adding <code>shape-outside: margin-box;</code> (notice, no shape function), the float area around the element respects the shape from <code>border-radius</code>.</p>
 <p>To a great extent, all reference boxes work as previously defined in conjunction with border radii, but there are <a href="http://www.w3.org/TR/css-shapes/#shapes-from-box-values">special cases to consider</a>.</p>
