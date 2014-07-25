@@ -23,11 +23,11 @@ We'll consider a simple circle shape around which we will wrap content. We'll us
 
 ## The margin-box
 
-If unspecified, the default reference box for a shape is `margin-box`. The CSS shape rule above is equivalent to `shape-outside: circle(50%) margin-box;`.
+If unspecified, the default reference box for a shape is `margin-box`. The CSS shape declaration above is equivalent to `shape-outside: circle(50%) margin-box;`.
 
-The `margin-box` reference box means that a shape is positioned in a virtual box defined by the outer edges of the host element's margin. The origin of the coordinate system is at the upper left corner of this box, with the X axis going from left to right and the Y axis going from top to bottom.
+The `margin-box` reference box means that a shape is positioned in a virtual box defined by the outer edges of the host element's margin. The origin of the coordinate system is at the upper-left corner of this box, with the X axis going from left to right and the Y axis going from top to bottom.
 
-We didn't specify a margin in our sample yet, so the `margin-box` reference box does not extend beyond the element. It's still ok to imagine the origin of the coordinate system for the shape placed at the upper-left corner of the element.
+We didn't specify a margin in our sample yet, so the `margin-box` reference box does not extend beyond the element's content area. It's still ok to imagine the origin of the coordinate system for the shape placed at the upper-left corner of the element.
 
 At this point, the circle's 50% radius yields an actual length of 50px (half the element's width or height).
 
@@ -45,16 +45,20 @@ The shape changes when we do specify a margin.
 
 After setting `margin: 50px`, the `margin-box` reference box extends around the element by 50px in all directions. It builds on the element's dimensions, so the reference box becomes 200px by 200px.
 
-The circle's 50% radius now means 100px and the origin is outside the element, at the upper left corner of the box defined by the margin.
+The circle's 50% radius now yields an actual length of 100px and the origin is outside the element’s content area, at the upper left corner of the box defined by the margin.
 
 ![margin-box reference box for circle() shape function](margin-box_reference-box.png)
 
 
 We use the `margin-box` reference box when it's important to wrap content around a shape which stretches beyond the dimensions of the host element.
 
+### Margins and shapes
+
+It's __very important__ to understand that all reference boxes define coordinate systems for shapes, but only the `margin-box` reference box actually clips the shape. This means that shapes larger than other reference boxes will eventually be clipped by the `margin-box`. Therefore, an element's margin can be used to increase the surface where the shape will draw, if it extends beyond other reference boxes.
+
 ## The border-box
 
-As its name implies, the `border-box` reference box constrains the shape's coordinate system to the box defined by the outer edges of the element's border. In this case, the shape may overlap the element's border, but it can't extend beyond it.
+As its name implies, the `border-box` reference box constrains the shape's coordinate system to the box defined by the outer edges of the element's border. In this case, the shape may overlap the element's border, and can extend beyond it if there is a margin around the element.
 
 ```css
 .shape{
@@ -141,15 +145,26 @@ That was the predictable case. However, if one of the dimensions isn't defined, 
 
 Notice that we commented-out the explicit `height` property. Now, the `content-box` reference box depends on the amount of content within the element with the "shape" class. Different `font-size` values or relative size units will also have an impact on the reference box.
 
-For simplicity's sake, in the examples so far, we used dimensions that get us a a square element. In those cases the circle's radius would equate to half the square's edge. However, computing radii as percentage units for `circle()` and `ellipse()` depends on a slightly more complicated [formula](http://www.w3.org/TR/css-shapes/#funcdef-circle): sqrt(width<sup>2</sup> +height<sup>2</sup>)/sqrt(2). This becomes important for understanding and mentally visualizing the `content-box` reference box when the amount of content can influence one or both dimensions.
+### Variable dimension reference boxes
+For simplicity's sake, in the examples so far, we used dimensions that get us a a square element. In those cases the circle's radius would equate to half the square's edge.
+
+However, computing radii as percentage units for `circle()` and `ellipse()` depends on a slightly more complicated [formula](http://www.w3.org/TR/css-shapes/#funcdef-circle): sqrt(width<sup>2</sup> +height<sup>2</sup>)/sqrt(2). This is a special case only for `circle()` and `ellips()` radii; other shape functions, like `polygon()`, are not constrained by this.
+
+Understanding this formula becomes important for mentally visualizing the `content-box` reference box when the amount of content can influence one or both dimensions. It's worth noting that this case of variable dimension applies with the other reference boxes as well, it's not endemic to `content-box`.
 
 ![inferred content-box reference box for circle() shape function](content-box-inferred_reference-box.png)
+
+In the illustration above we observe that the circle does not touch the content-box top and bottom edges yet it extends beyond its left and right edges. This is expected and happens because of two reasons: 1) the radius is computed out of the element dimensions with the formula mentioned above, and 2) we omitted defining where the circle's center should be, so the default was used &mdash; the center of the coordinate system (the intersection of the element's diagonals in this case).
 
 At first glance, it looks like the `content-box` reference box is too much of a hassle to be worthwhile. However, there is a valid use case: progressive shape disclosure. This means we can create a shape which is much larger than what's immediately needed or visible, but as the amount of content increases more of the shape gets revealed.
 
 Imagine using `polygon()` to create a saw-like shape which runs down along the side of the element. CSS Shapes do not yet have a "repeat" property. Using progressive shape disclosure with the `content-box` reference box is a way to achieve the same effect using larger shapes composed of a repeated pattern.
 
 ![progressive shape disclosure based on content-box reference box size](progressive-shape-disclosure.png)
+
+Remember, the `margin-box` does the actual clipping of oversized shapes. If there is a margin around the element, the shape may extend beyond the `content-box`, only to be clipped by the `margin-box`.
+
+![progressive shape disclosure based on content-box reference box size, but influenced by margin-box](progressive-shape-disclosure_margin-box.png)
 
 ## Creating shapes from reference boxes
 
@@ -191,5 +206,7 @@ reference box | if default `box-sizing` | if `box-sizing: border-box`
 Reference boxes help us control the sizing and positioning of CSS Shapes.
 
 They abstract away some of the complexity of coordinate systems and free us from having to manually define dimensions for each element. This contributes to making responsive shapes which are portable both across screens and between projects.
+
+Many thanks to [Alan Stearns](https://twitter.com/alanstearns) and [Sara Soueidan](https://twitter.com/sarasoueidan) for reviewing this article.
 
 Have fun!
