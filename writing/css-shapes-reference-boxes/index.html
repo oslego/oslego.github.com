@@ -33,9 +33,9 @@
 }
 </code></pre>
 <h2 id="the-margin-box">The margin-box</h2>
-<p>If unspecified, the default reference box for a shape is <code>margin-box</code>. The CSS shape rule above is equivalent to <code>shape-outside: circle(50%) margin-box;</code>.</p>
-<p>The <code>margin-box</code> reference box means that a shape is positioned in a virtual box defined by the outer edges of the host element&#39;s margin. The origin of the coordinate system is at the upper left corner of this box, with the X axis going from left to right and the Y axis going from top to bottom.</p>
-<p>We didn&#39;t specify a margin in our sample yet, so the <code>margin-box</code> reference box does not extend beyond the element. It&#39;s still ok to imagine the origin of the coordinate system for the shape placed at the upper-left corner of the element.</p>
+<p>If unspecified, the default reference box for a shape is <code>margin-box</code>. The CSS shape declaration above is equivalent to <code>shape-outside: circle(50%) margin-box;</code>.</p>
+<p>The <code>margin-box</code> reference box means that a shape is positioned in a virtual box defined by the outer edges of the host element&#39;s margin. The origin of the coordinate system is at the upper-left corner of this box, with the X axis going from left to right and the Y axis going from top to bottom.</p>
+<p>We didn&#39;t specify a margin in our sample yet, so the <code>margin-box</code> reference box does not extend beyond the element&#39;s content area. It&#39;s still ok to imagine the origin of the coordinate system for the shape placed at the upper-left corner of the element.</p>
 <p>At this point, the circle&#39;s 50% radius yields an actual length of 50px (half the element&#39;s width or height).</p>
 <p>The shape changes when we do specify a margin.</p>
 <pre><code class="lang-css">.shape{
@@ -47,11 +47,13 @@
 }
 </code></pre>
 <p>After setting <code>margin: 50px</code>, the <code>margin-box</code> reference box extends around the element by 50px in all directions. It builds on the element&#39;s dimensions, so the reference box becomes 200px by 200px.</p>
-<p>The circle&#39;s 50% radius now means 100px and the origin is outside the element, at the upper left corner of the box defined by the margin.</p>
+<p>The circle&#39;s 50% radius now yields an actual length of 100px and the origin is outside the element’s content area, at the upper left corner of the box defined by the margin.</p>
 <p><img src="margin-box_reference-box.png" alt="margin-box reference box for circle() shape function"></p>
 <p>We use the <code>margin-box</code> reference box when it&#39;s important to wrap content around a shape which stretches beyond the dimensions of the host element.</p>
+<h3 id="margins-and-shapes">Margins and shapes</h3>
+<p>It&#39;s <strong>very important</strong> to understand that all reference boxes define coordinate systems for shapes, but only the <code>margin-box</code> reference box actually clips the shape. This means that shapes larger than other reference boxes will eventually be clipped by the <code>margin-box</code>. Therefore, an element&#39;s margin can be used to increase the surface where the shape will draw, if it extends beyond other reference boxes.</p>
 <h2 id="the-border-box">The border-box</h2>
-<p>As its name implies, the <code>border-box</code> reference box constrains the shape&#39;s coordinate system to the box defined by the outer edges of the element&#39;s border. In this case, the shape may overlap the element&#39;s border, but it can&#39;t extend beyond it.</p>
+<p>As its name implies, the <code>border-box</code> reference box constrains the shape&#39;s coordinate system to the box defined by the outer edges of the element&#39;s border. In this case, the shape may overlap the element&#39;s border, and can extend beyond it if there is a margin around the element.</p>
 <pre><code class="lang-css">.shape{
   border: 25px solid pink;
   shape-outside: circle(50%) border-box;
@@ -105,11 +107,17 @@
 }
 </code></pre>
 <p>Notice that we commented-out the explicit <code>height</code> property. Now, the <code>content-box</code> reference box depends on the amount of content within the element with the &quot;shape&quot; class. Different <code>font-size</code> values or relative size units will also have an impact on the reference box.</p>
-<p>For simplicity&#39;s sake, in the examples so far, we used dimensions that get us a a square element. In those cases the circle&#39;s radius would equate to half the square&#39;s edge. However, computing radii as percentage units for <code>circle()</code> and <code>ellipse()</code> depends on a slightly more complicated <a href="http://www.w3.org/TR/css-shapes/#funcdef-circle">formula</a>: sqrt(width<sup>2</sup> +height<sup>2</sup>)/sqrt(2). This becomes important for understanding and mentally visualizing the <code>content-box</code> reference box when the amount of content can influence one or both dimensions.</p>
+<h3 id="variable-dimension-reference-boxes">Variable dimension reference boxes</h3>
+<p>For simplicity&#39;s sake, in the examples so far, we used dimensions that get us a a square element. In those cases the circle&#39;s radius would equate to half the square&#39;s edge.</p>
+<p>However, computing radii as percentage units for <code>circle()</code> and <code>ellipse()</code> depends on a slightly more complicated <a href="http://www.w3.org/TR/css-shapes/#funcdef-circle">formula</a>: sqrt(width<sup>2</sup> +height<sup>2</sup>)/sqrt(2). This is a special case only for <code>circle()</code> and <code>ellips()</code> radii; other shape functions, like <code>polygon()</code>, are not constrained by this.</p>
+<p>Understanding this formula becomes important for mentally visualizing the <code>content-box</code> reference box when the amount of content can influence one or both dimensions. It&#39;s worth noting that this case of variable dimension applies with the other reference boxes as well, it&#39;s not endemic to <code>content-box</code>.</p>
 <p><img src="content-box-inferred_reference-box.png" alt="inferred content-box reference box for circle() shape function"></p>
+<p>In the illustration above we observe that the circle does not touch the content-box top and bottom edges yet it extends beyond its left and right edges. This is expected and happens because of two reasons: 1) the radius is computed out of the element dimensions with the formula mentioned above, and 2) we omitted defining where the circle&#39;s center should be, so the default was used &mdash; the center of the coordinate system (the intersection of the element&#39;s diagonals in this case).</p>
 <p>At first glance, it looks like the <code>content-box</code> reference box is too much of a hassle to be worthwhile. However, there is a valid use case: progressive shape disclosure. This means we can create a shape which is much larger than what&#39;s immediately needed or visible, but as the amount of content increases more of the shape gets revealed.</p>
 <p>Imagine using <code>polygon()</code> to create a saw-like shape which runs down along the side of the element. CSS Shapes do not yet have a &quot;repeat&quot; property. Using progressive shape disclosure with the <code>content-box</code> reference box is a way to achieve the same effect using larger shapes composed of a repeated pattern.</p>
 <p><img src="progressive-shape-disclosure.png" alt="progressive shape disclosure based on content-box reference box size"></p>
+<p>Remember, the <code>margin-box</code> does the actual clipping of oversized shapes. If there is a margin around the element, the shape may extend beyond the <code>content-box</code>, only to be clipped by the <code>margin-box</code>.</p>
+<p><img src="progressive-shape-disclosure_margin-box.png" alt="progressive shape disclosure based on content-box reference box size, but influenced by margin-box"></p>
 <h2 id="creating-shapes-from-reference-boxes">Creating shapes from reference boxes</h2>
 <p>It is possible to skip the shape function definition and to infer the shape from the element&#39;s reference box. This is particularly useful when <code>border-radius</code> is used, because that property can influence the shape of the reference box.</p>
 <pre><code class="lang-css">.shape{
@@ -161,6 +169,7 @@
 <h2 id="conclusion">Conclusion</h2>
 <p>Reference boxes help us control the sizing and positioning of CSS Shapes.</p>
 <p>They abstract away some of the complexity of coordinate systems and free us from having to manually define dimensions for each element. This contributes to making responsive shapes which are portable both across screens and between projects.</p>
+<p>Many thanks to <a href="https://twitter.com/alanstearns">Alan Stearns</a> and <a href="https://twitter.com/sarasoueidan">Sara Soueidan</a> for reviewing this article.</p>
 <p>Have fun!</p>
 
 </div>
