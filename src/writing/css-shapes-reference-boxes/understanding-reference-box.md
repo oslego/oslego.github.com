@@ -208,5 +208,3 @@ Reference boxes help us control the sizing and positioning of CSS Shapes.
 They abstract away some of the complexity of coordinate systems and free us from having to manually define dimensions for each element. This contributes to making responsive shapes which are portable both across screens and between projects.
 
 Many thanks to [Alan Stearns](https://twitter.com/alanstearns) and [Sara Soueidan](https://twitter.com/sarasoueidan) for reviewing this article.
-
-Have fun!
