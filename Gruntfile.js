@@ -5,6 +5,11 @@ var marked = require('marked'),
     path = require('path'),
     handlebars = require('handlebars');
 
+marked.setOptions({
+    highlight: function (code) {
+      return require('highlight.js').highlightAuto(code).value;
+    }
+});
 
 /*
   Attempts to find and return the innerHTML of the first <h1> element fround in the input string.
