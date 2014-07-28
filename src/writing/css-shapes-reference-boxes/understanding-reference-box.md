@@ -54,7 +54,7 @@ We use the `margin-box` reference box when it's important to wrap content around
 
 ### Margins and shapes
 
-It's __very important__ to understand that all reference boxes define coordinate systems for shapes, but only the `margin-box` reference box actually clips the shape. This means that shapes larger than other reference boxes will eventually be clipped by the `margin-box`. Therefore, an element's margin can be used to increase the surface where the shape will draw, if it extends beyond other reference boxes.
+It's __very important__ to understand that all reference boxes define coordinate systems for shapes, but only the `margin-box` actually clips the shape. This means that shapes larger than other reference boxes will eventually be clipped by the `margin-box`. Therefore, an element's margin can be used to increase the surface where the shape will draw, if it extends beyond other reference boxes.
 
 ## The border-box
 
@@ -62,7 +62,7 @@ As its name implies, the `border-box` reference box constrains the shape's coord
 
 ```css
 .shape{
-  border: 25px solid pink;
+  border: 25px solid yellow;
   shape-outside: circle(50%) border-box;
   float: left;
   width: 100px;
