@@ -1,9 +1,6 @@
-<div class="greeting slim">
-# No comments
-Opinions are optional
-</div>
-<div id="post">
+# No comments <em>Opinions are optional</em>
 
+<div id="post">
 This blog does not offer a commenting form. That is intentional. Though, I'm not against useful feedback and constructive criticism.
 
 If you do have something to say, pause first and give it some thought.
@@ -23,3 +20,4 @@ If you have knowledge to add, I welcome your contributions.
 ## But how do I thank you?
 Think happy thoughts and do something nice for someone else.
 I'll know.
+</div>

@@ -1,22 +1,18 @@
-<div class="greeting slim">
 # About me
-What makes me be me
-</div>
+
 <div id="post">
 
-I'm not keen on job titles, but, for easy reference, you can put me in the web developer bucket.
+As a free-range web developer at [Adobe](http://www.adobe.com), I get a lot of flexibility to work on various cutting-edge tools and web technologies. I thrive in environments where I have the autonomy to explore, learn and pick the right solutions.
 
-As a free-range web developer at [Adobe](http://www.adobe.com), I get a lot of flexibility to work on various cutting-edge tools and web technologies. I thrive in environments where I have the autonomy to pick the right solutions, explore and learn.
+## What I do
 
-What I do
-
-I enjoy working with JavaScript, HTML and CSS to build effective solutions to real problems. While I prefer client-side web development, I do not shy away from meddling on the server-side.
+I enjoy working with JavaScript, HTML and CSS to build effective solutions to real problems. While I prefer client-side web development, I will not shy away from meddling on the server-side.
 
 Follow me on Twitter [@razvancaliman](https://twitter.com/razvancaliman) if you want to know what grabs my attention from time to time.
 
 ## Adobe
 
-I work with a bunch of smart people at Adobe, on the Web Platform team, teaching CSS new tricks. We're building CSS Regions, CSS Shapes and Exclusions, CSS Shaders and more.  Keep an eye on us at [html.adobe.com](http://html.adobe.com)
+I work with a bunch of smart people at Adobe on the Web Platform team, teaching CSS new tricks. We're building CSS Regions, CSS Shapes and Exclusions, CSS Shaders and more. Keep an eye on our work at [html.adobe.com](http://html.adobe.com)
 
 I put myself through some pain so you don't have to. I often work with *not-quite-done-yet* technology in order to uncover bugs and workflows that can be improved. I build JavaScript prototypes to quickly validate ideas and I provide feedback and use cases for web standards proposals.
 
@@ -36,3 +32,4 @@ I have an attitude towards reducing needless complexity and I believe elegant si
 Away from the computer, I enjoy watching documentaries, cooking and driving on long road trips.
 
 Have fun!
+</div>
