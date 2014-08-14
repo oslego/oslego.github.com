@@ -52,7 +52,7 @@ module.exports = function (grunt) {
         dist: 'dist',
         index: 'dist/index.html',
         posts: 'src/writing/*/*.md',
-        pages: ['src/about/*.md', 'src/no-comments/*.md']
+        pages: ['src/about/*.md', 'src/no-comments/*.md', 'src/privacy/*.md']
       },
 
       template: {
