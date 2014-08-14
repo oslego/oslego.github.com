@@ -52,6 +52,15 @@ a{
     border-radius: 0 0 5px 5px;
 }
 
+.fineprint{
+  color: #ccc;
+  font-size: 0.8em;
+
+  a, a:hover, a:visited{
+    color: inherit;
+  }
+}
+
 #post{
     padding: 2em 6em;
     background: white;
@@ -88,6 +97,10 @@ a{
     img {
       width: 110%;
       margin-left: -4%;
+    }
+
+    .fineprint{
+      font-size: 1rem;
     }
 }
 
