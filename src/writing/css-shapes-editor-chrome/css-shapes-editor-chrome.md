@@ -38,12 +38,12 @@ CSS Masking's `clip-path` property uses the same syntax as CSS Shapes, so it is 
 
 ## Origins
 
-I became acutely aware of the need for a CSS Shapes editor while building the original [Alice in Wonderland demo](https://www.youtube.com/watch?v=VON2shFlsKU). The grueling process of going back-and-forth between a vector editing tool, the code editor, and the browser to check the results, even for minuscule tweaks, drove me insane. I lost hours of my life working frustrated like that, before I decided to put some energy into building an in-browser tool to help me get the work done. The prototype tool proved to be very useful. I got wonderful support from peers and my manager to build it and release it publicly for the benefit of everyone.
+I became acutely aware of the need for a CSS Shapes editor while building the original [Alice in Wonderland demo](https://www.youtube.com/watch?v=VON2shFlsKU). The grueling process of going back-and-forth between a vector editing tool, the code editor, and the browser to check the results, even for minuscule tweaks, drove me insane. I lost hours of my life working frustrated like that before I decided to put some energy into building an in-browser tool to help me get the work done. The prototype tool proved to be very useful. I received wonderful support from peers and from my manager to build and release it publicly for everyone to use.
 
 The CSS Shapes Editor for Chrome uses the same underlying interactive [shapes editor library](https://github.com/adobe-webplatform/css-shapes-editor) as the [CSS Shapes Editor for Brackets](http://blog.brackets.io/2014/04/17/css-shapes-editor/) extension. I built all of these over time, but it is by no means a singular effort. What you see today is the result of a lot of work done by [a few people](https://github.com/adobe-webplatform/css-shapes-editor#thanks) who contributed both directly and indirectly, knowingly and unknowingly. Thank you, all!
 
 ## Going forward
 
-The CSS Shapes Editor for Chrome is a labor of love above anything else. I sincerely  believe it will be useful in you workflow as you explore how to use CSS Shapes and change the way content is presented on the web beyond simple boxes.
+The CSS Shapes Editor for Chrome is a labor of love, above anything else. I sincerely  believe it will be useful in your workflow as you explore how to use CSS Shapes and change the way content is presented on the web beyond simple boxes.
 
 I leave you with a [collection](http://www.behance.net/collection/25035325/Shapes) of work by others, mostly in print, in hopes that it may inspire you to try out shapes on the web.
