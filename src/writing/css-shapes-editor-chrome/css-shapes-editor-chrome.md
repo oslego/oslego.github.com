@@ -1,5 +1,9 @@
 # CSS Shapes Editor for Chrome
 
+<p class="meta">
+<time datetime="2012-08-31 00:00">31 Aug 2014</time> - London
+</p>
+
 CSS Shapes allow web designers to wrap content around custom paths, but authoring them is not trivial.
 
 None of the traditional tools used in web design currently export code for CSS Shapes and the syntax conversion workflow is unwieldy and time-consuming. It wouldn't help too much even if they did. CSS Shapes are meant to be used in the browser context where it's easy to see how they interact with other elements on the page in various configurations. The shape authoring process should capitalize on this affordance, something external editing tools are not well equipped to do.
