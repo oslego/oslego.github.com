@@ -51,11 +51,11 @@
 <p><img src="margin-box_reference-box.png" alt="margin-box reference box for circle() shape function"></p>
 <p>We use the <code>margin-box</code> reference box when it&#39;s important to wrap content around a shape which stretches beyond the dimensions of the host element.</p>
 <h3 id="margins-and-shapes">Margins and shapes</h3>
-<p>It&#39;s <strong>very important</strong> to understand that all reference boxes define coordinate systems for shapes, but only the <code>margin-box</code> reference box actually clips the shape. This means that shapes larger than other reference boxes will eventually be clipped by the <code>margin-box</code>. Therefore, an element&#39;s margin can be used to increase the surface where the shape will draw, if it extends beyond other reference boxes.</p>
+<p>It&#39;s <strong>very important</strong> to understand that all reference boxes define coordinate systems for shapes, but only the <code>margin-box</code> actually clips the shape. This means that shapes larger than other reference boxes will eventually be clipped by the <code>margin-box</code>. Therefore, an element&#39;s margin can be used to increase the surface where the shape will draw, if it extends beyond other reference boxes.</p>
 <h2 id="the-border-box">The border-box</h2>
 <p>As its name implies, the <code>border-box</code> reference box constrains the shape&#39;s coordinate system to the box defined by the outer edges of the element&#39;s border. In this case, the shape may overlap the element&#39;s border, and can extend beyond it if there is a margin around the element.</p>
 <pre><code class="lang-css"><span class="hljs-class">.shape</span><span class="hljs-rules">{
-  <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">25px</span> solid pink</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">25px</span> solid yellow</span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">shape-outside</span>:<span class="hljs-value"> <span class="hljs-function">circle</span>(<span class="hljs-number">50%</span>) border-box</span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
@@ -171,9 +171,11 @@
 <p>They abstract away some of the complexity of coordinate systems and free us from having to manually define dimensions for each element. This contributes to making responsive shapes which are portable both across screens and between projects.</p>
 <p>Many thanks to <a href="https://twitter.com/alanstearns">Alan Stearns</a> and <a href="https://twitter.com/sarasoueidan">Sara Soueidan</a> for reviewing this article.</p>
 
-<p class="fineprint">No comments. <a href="/no-comments">Find out why</a>.</p>
+No comments. <a href="/no-comments">Find out why</a>.
 </div>
 
+
+    <p class="fineprint">This website <a href="/privacy">does not track you</a>.</p>
   </div>
 </body>
 </html>
