@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+  <title>CSS Shapes Editor for Chrome</title>
+  <meta charset="UTF-8">
+  <meta name="author" content="Razvan Caliman" />
+  <link href='http://fonts.googleapis.com/css?family=Fredericka+the+Great|Dosis:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="/css/style.css" media="all" />
+</head>
+<body>
+  <header>
+    <a href="/" class="logo">Razvan Caliman</a>
+    <nav>
+      <a href="/about">about me</a>
+    </nav>
+  </header>
+
+  <div class="content">
+    <div id="post">
+<h1 id="css-shapes-editor-for-chrome">CSS Shapes Editor for Chrome</h1>
+<p class="meta">
+<time datetime="2012-08-31 00:00">31 Aug 2014</time> - London
+</p>
+
+<p>CSS Shapes allow web designers to wrap content around custom paths, but authoring them is not trivial.</p>
+<p>None of the traditional tools used in web design currently export code for CSS Shapes and the syntax conversion workflow is unwieldy and time-consuming. It wouldn&#39;t help too much even if they did. CSS Shapes are meant to be used in the browser context where it&#39;s easy to see how they interact with other elements on the page in various configurations. The shape authoring process should capitalize on this affordance, something external editing tools are not well equipped to do.</p>
+<p>To solve this problem, I released the <a href="https://chrome.google.com/webstore/detail/css-shapes-editor/nenndldnbcncjmeacmnondmkkfedmgmp">CSS Shapes Editor for Chrome</a>. It is a Developer Tools extension which provides an interactive editor for shape property values like <code>circle()</code>, <code>ellipse()</code> and <code>polygon()</code>.</p>
+<p><a href="https://chrome.google.com/webstore/detail/css-shapes-editor/nenndldnbcncjmeacmnondmkkfedmgmp"><img src="screenshot.jpg" alt="Screenshot of CSS Shapes Editor for Chrome"></a></p>
+<p>An interactive editor is placed over the selected element. It adds controls to adjust, move, scale and rotate the shape while getting instant visual feedback of how that impacts the layout. This makes working with CSS Shapes much more practical and, dare I say it, more fun because it&#39;s easier to experiment with shape ideas right there in the browser.</p>
+<h2 id="how-to-use">How to use</h2>
+<p><a href="https://chrome.google.com/webstore/detail/css-shapes-editor/nenndldnbcncjmeacmnondmkkfedmgmp">Install the extension</a> from the Chrome Web Store.</p>
+<p>The extension adds a new sidebar to the Elements panel, called <strong>Shapes</strong>. This sidebar lists the computed style of shape and clip-path properties for the selected element. Click the &quot;pointer&quot; icon next to a property value to edit an existing path, or click the &quot;plus&quot; icon to create a new one.</p>
+<p>For polygons, click on the edges of the interactive editor to add new vertices, drag the points to adjust the shape or double-click an existing point to delete it.</p>
+<p><img src="edit.gif" alt="Editing a polygon shape"></p>
+<p>To switch to transform mode, click the &quot;move&quot; icon in the interactive editor&#39;s toolbar, then move, scale and rotate the polygon shape.</p>
+<p><img src="transform.gif" alt="Transforming a polygon shape"></p>
+<p>Circles and ellipses only get the transform mode for scaling and moving, but not for rotation.</p>
+<p>All CSS unit types can be used with CSS Shapes. By default, the CSS Shapes Editor uses pixels, but it understands other units too. Sometimes it&#39;s useful to change the unit type of a shape&#39;s coordinates, for example to make it responsive. Here&#39;s a nifty trick: hold down the <em>Shift</em> key and click on the &quot;pointer&quot; icon. This cycles though a list of unit types and converts the shape coordinates.</p>
+<p><img src="convert.gif" alt="Converting units of a polygon shape"></p>
+<p>Did you know you can use the same <em>Shift</em>+click trick to convert the color value syntax in the <em>Styles</em> panel? <a href="https://twitter.com/umaar">Umar Hansa</a> shares a lot of DevTools tricks.</p>
+<p>CSS Masking&#39;s <code>clip-path</code> property uses the same syntax as CSS Shapes, so it is possible to reuse the CSS Shapes Editor. That&#39;s why the <code>clip-path</code> computed value is also available in the extension sidebar.</p>
+<p><img src="clip.gif" alt="Clipping using a circle shape"></p>
+<h2 id="origins">Origins</h2>
+<p>I became acutely aware of the need for a CSS Shapes editor while building the original <a href="https://www.youtube.com/watch?v=VON2shFlsKU">Alice in Wonderland demo</a>. The grueling process of going back-and-forth between a vector editing tool, the code editor, and the browser to check the results, even for minuscule tweaks, drove me insane. I lost hours of my life working frustrated like that before I decided to put some energy into building an in-browser tool to help me get the work done. The prototype tool proved to be very useful. I received wonderful support from peers and from my manager to build and release it publicly for everyone to use.</p>
+<p>The CSS Shapes Editor for Chrome uses the same underlying interactive <a href="https://github.com/adobe-webplatform/css-shapes-editor">shapes editor library</a> as the <a href="http://blog.brackets.io/2014/04/17/css-shapes-editor/">CSS Shapes Editor for Brackets</a> extension. I built all of these over time, but it is by no means a singular effort. What you see today is the result of a lot of work done by <a href="https://github.com/adobe-webplatform/css-shapes-editor#thanks">a few people</a> who contributed both directly and indirectly, knowingly and unknowingly. Thank you, all!</p>
+<h2 id="going-forward">Going forward</h2>
+<p>The CSS Shapes Editor for Chrome is a labor of love, above anything else. I sincerely  believe it will be useful in your workflow as you explore how to use CSS Shapes and change the way content is presented on the web beyond simple boxes.</p>
+<p>I leave you with a <a href="http://www.behance.net/collection/25035325/Shapes">collection</a> of work by others, mostly in print, in hopes that it may inspire you to try out shapes on the web.</p>
+
+No comments. <a href="/no-comments">Find out why</a>.
+</div>
+
+
+    <p class="fineprint">This website <a href="/privacy">does not track you</a>.</p>
+  </div>
+</body>
+</html>
