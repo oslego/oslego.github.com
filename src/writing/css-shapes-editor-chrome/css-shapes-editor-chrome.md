@@ -46,7 +46,7 @@ I became acutely aware of the need for a CSS Shapes editor while building the or
 
 The CSS Shapes Editor for Chrome uses the same underlying interactive [shapes editor library](https://github.com/adobe-webplatform/css-shapes-editor) as the [CSS Shapes Editor for Brackets](http://blog.brackets.io/2014/04/17/css-shapes-editor/) extension. I built all of these over time, but it is by no means a singular effort. What you see today is the result of a lot of work done by [a few people](https://github.com/adobe-webplatform/css-shapes-editor#thanks) who contributed both directly and indirectly, knowingly and unknowingly. Thank you, all!
 
-The source of the editor is [available on GitHub](https://github.com/oslego/chrome-css-shapes-editor). I welcome comments, bug reports and pull requests on on it.
+The source of both the shapes editor [extension](https://github.com/oslego/chrome-css-shapes-editor) and [library](https://github.com/adobe-webplatform/css-shapes-editor) is available on GitHub. I welcome comments, bug reports and pull requests.
 
 ## Going forward
 
