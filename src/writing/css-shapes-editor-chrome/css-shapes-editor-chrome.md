@@ -10,7 +10,7 @@ None of the traditional tools used in web design currently export code for CSS S
 
 To solve this problem, I released the [CSS Shapes Editor for Chrome](https://chrome.google.com/webstore/detail/css-shapes-editor/nenndldnbcncjmeacmnondmkkfedmgmp). It is a Developer Tools extension which provides an interactive editor for shape property values like `circle()`, `ellipse()` and `polygon()`.
 
-[![Screenshot of CSS Shapes Editor for Chrome](screenshot.jpg)](https://chrome.google.com/webstore/detail/css-shapes-editor/nenndldnbcncjmeacmnondmkkfedmgmp)
+<iframe width="520" height="390" src="//www.youtube.com/embed/zdWsBZiGiZc?rel=0" frameborder="0" allowfullscreen></iframe>
 
 An interactive editor is placed over the selected element. It adds controls to adjust, move, scale and rotate the shape while getting instant visual feedback of how that impacts the layout. This makes working with CSS Shapes much more practical and, dare I say it, more fun because it's easier to experiment with shape ideas right there in the browser.
 
@@ -45,6 +45,8 @@ CSS Masking's `clip-path` property uses the same syntax as CSS Shapes, so it is 
 I became acutely aware of the need for a CSS Shapes editor while building the original [Alice in Wonderland demo](https://www.youtube.com/watch?v=VON2shFlsKU). The grueling process of going back-and-forth between a vector editing tool, the code editor, and the browser to check the results, even for minuscule tweaks, drove me insane. I lost hours of my life working frustrated like that before I decided to put some energy into building an in-browser tool to help me get the work done. The prototype tool proved to be very useful. I received wonderful support from peers and from my manager to build and release it publicly for everyone to use.
 
 The CSS Shapes Editor for Chrome uses the same underlying interactive [shapes editor library](https://github.com/adobe-webplatform/css-shapes-editor) as the [CSS Shapes Editor for Brackets](http://blog.brackets.io/2014/04/17/css-shapes-editor/) extension. I built all of these over time, but it is by no means a singular effort. What you see today is the result of a lot of work done by [a few people](https://github.com/adobe-webplatform/css-shapes-editor#thanks) who contributed both directly and indirectly, knowingly and unknowingly. Thank you, all!
+
+The source of the editor is [available on GitHub](https://github.com/oslego/chrome-css-shapes-editor). I welcome comments, bug reports and pull requests on on it.
 
 ## Going forward
 
