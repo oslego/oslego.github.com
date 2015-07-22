@@ -1,5 +1,9 @@
 # Talks and workshops
 
+## 2015
+- JSConf EU - Berlin, Sep 25-27 2015
+- InfoShare - Gdansk, Jun 11-12 2015 
+
 ## 2014
 - New Developers Conference - London, Dec 3 2014
 - Shoreditch.js (meetup) - London, Nov 20 2014
